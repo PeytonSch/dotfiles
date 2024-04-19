@@ -1,3 +1,7 @@
-# Example_config
+You can simlink this custom file from the git repo to your nvim config dir :)
+To avoid too many paths error, make the source path absolute. For example:
 
-This can be used as an example custom config for NvChad. Do check the https://github.com/NvChad/nvcommunity
+```
+cd /home/schepe2/.config/nvim/lua 
+ln -s /mnt/g/Users/Peyton/Documents/Code/neovim/custom/ ./ 
+```
