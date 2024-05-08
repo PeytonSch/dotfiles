@@ -1,4 +1,4 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 -- metals uses these to add keymaps
 local map = vim.keymap.set
@@ -23,19 +23,19 @@ local plugins = {
     },
   },
   {
-      'kevinhwang91/nvim-bqf',
-      ft = 'qf',
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
   },
 
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
-    run = ':TSUpdate',
+    run = ":TSUpdate",
     opts = overrides.treesitter,
   },
 
@@ -43,14 +43,19 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
-
+  {
+    "cbochs/grapple.nvim",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons", lazy = true },
+    },
+  },
   -- Install a plugin
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = function()
       require("better_escape").setup {
-        mapping = {"jk", "jj", "kj"}, -- a table with mappings to use
+        mapping = { "jk", "jj", "kj" }, -- a table with mappings to use
         timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
         clear_empty_lines = false, -- clear line after escaping if there is only whitespace
         keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
@@ -58,20 +63,19 @@ local plugins = {
         -- keys = function()
         --   return vim.api.nvim_win_get_cursor(0)[2] > 1 and '<esc>l' or '<esc>'
         -- end,
-    }
+      }
     end,
   },
-
 
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
-    end
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
   },
 
   {
@@ -83,9 +87,9 @@ local plugins = {
     end,
   },
   {
-    "nvim-lua/plenary.nvim"
+    "nvim-lua/plenary.nvim",
   },
-  -- My old Simple Metals config 
+  -- My old Simple Metals config
   --
   -- {
   --   "scalameta/nvim-metals",
@@ -118,25 +122,24 @@ local plugins = {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       -- calling `setup` is optional for customization
-      require("fzf-lua").setup({})
-    end
+      require("fzf-lua").setup {}
+    end,
   },
   { "junegunn/fzf", build = "./install --bin" },
 
-
   -- My new more complex metals config
   -- starting with nvim cmp, we already have this, but the dependencies are different,
-  -- hopefully they get merged? 
+  -- hopefully they get merged?
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-vsnip" },
-      { "hrsh7th/vim-vsnip" }
+      { "hrsh7th/vim-vsnip" },
     },
     opts = function()
-      local cmp = require("cmp")
+      local cmp = require "cmp"
       local conf = {
         sources = {
           { name = "nvim_lsp" },
@@ -148,19 +151,19 @@ local plugins = {
             fn["vsnip#anonymous"](args.body)
           end,
         },
-        mapping = cmp.mapping.preset.insert({
+        mapping = cmp.mapping.preset.insert {
           -- None of this made sense to me when first looking into this since there
           -- is no vim docs, but you can't have select = true here _unless_ you are
           -- also using the snippet stuff. So keep in mind that if you remove
           -- snippets you need to remove this select
-          ["<CR>"] = cmp.mapping.confirm({ select = true })
-        })
+          ["<CR>"] = cmp.mapping.confirm { select = true },
+        },
       }
       return conf
-    end
+    end,
   },
 
-  -- Actual metals install 
+  -- Actual metals install
   -- TODO: how to break this into another file?
   {
     "scalameta/nvim-metals",
@@ -174,7 +177,7 @@ local plugins = {
         "mfussenegger/nvim-dap",
         config = function(self, opts)
           -- Debug settings if you're using nvim-dap
-          local dap = require("dap")
+          local dap = require "dap"
 
           dap.configurations.scala = {
             {
@@ -195,7 +198,7 @@ local plugins = {
               },
             },
           }
-        end
+        end,
       },
     },
     ft = { "scala", "sbt", "java" },
@@ -247,23 +250,23 @@ local plugins = {
 
         -- all workspace errors
         map("n", "<leader>ae", function()
-          vim.diagnostic.setqflist({ severity = "E" })
+          vim.diagnostic.setqflist { severity = "E" }
         end)
 
         -- all workspace warnings
         map("n", "<leader>aw", function()
-          vim.diagnostic.setqflist({ severity = "W" })
+          vim.diagnostic.setqflist { severity = "W" }
         end)
 
         -- buffer diagnostics only
         map("n", "<leader>d", vim.diagnostic.setloclist)
 
         map("n", "[c", function()
-          vim.diagnostic.goto_prev({ wrap = false })
+          vim.diagnostic.goto_prev { wrap = false }
         end)
 
         map("n", "]c", function()
-          vim.diagnostic.goto_next({ wrap = false })
+          vim.diagnostic.goto_next { wrap = false }
         end)
 
         -- Example mappings for usage with nvim-dap. If you don't use that, you can
@@ -308,10 +311,8 @@ local plugins = {
         end,
         group = nvim_metals_group,
       })
-    end
-
+    end,
   },
-
 
   --
 

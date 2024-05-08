@@ -35,6 +35,7 @@ M.mason = {
     "prettier",
     "vetur-vls",
     "vue-language-server",
+    "tailwind-css-language-server",
     "typescript-language-server",
 
     -- c/cpp stuff
