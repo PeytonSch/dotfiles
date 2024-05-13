@@ -77,6 +77,10 @@ local plugins = {
       }
     end,
   },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
 
   {
     "stevearc/conform.nvim",
