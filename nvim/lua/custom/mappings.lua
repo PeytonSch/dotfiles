@@ -50,12 +50,17 @@ M.customMappings = {
       function()
         require("grapple").toggle()
       end,
+      "Grapple toggle",
     },
     ["<leader>gg"] = {
       function()
         require("grapple").toggle_tags()
       end,
+      "Grapple toggle tags",
     },
+    ["<leader>gh"] = { ":Grapple cycle_tags last <CR>", "Grapple previous tag" },
+    ["<leader>gl"] = { ":Grapple cycle_tags next <CR>", "Grapple next tag" },
+
     -- metals
     ["<leader>mc"] = {
       function()
