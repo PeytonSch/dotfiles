@@ -345,16 +345,22 @@ M.nvterm = {
     -- new
     ["<leader>h"] = {
       function()
-        require("nvterm.terminal").new "horizontal"
+        vim.cmd "split"
       end,
-      "New horizontal term",
+      "New horizontal split",
     },
 
     ["<leader>v"] = {
       function()
-        require("nvterm.terminal").new "vertical"
+        vim.cmd "vsplit"
       end,
-      "New vertical term",
+      "New vertical split",
+    },
+    ["<leader>c"] = {
+      function()
+        vim.cmd "close"
+      end,
+      "New close split",
     },
   },
 }
