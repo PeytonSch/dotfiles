@@ -16,3 +16,8 @@ cp -r ~/.config/nvim /Users/schepe2/Documents/nvChadCustom/nvim
 rm /Users/schepe2/Documents/nvChadCustom/tmux/tmux.conf
 
 cp ~/.config/tmux/tmux.conf /Users/schepe2/Documents/nvChadCustom/tmux/tmux.conf
+
+# scripts
+rm /Users/schepe2/Documents/nvChadCustom/tmux-sessionizer.sh
+
+cp /Users/schepe2/Documents/myscripts/tmux-sessionizer.sh /Users/schepe2/Documents/nvChadCustom/
