@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	selected=$(find /Users/schepe2/Documents/repos ~/.config/ /Users/schepe2/Documents/ /Users/schepe2/Documents/myscripts/ -mindepth 1 -maxdepth 1 -type d | fzf)
+	selected=$(find /mnt/g/Users/Peyton/Documents/Code/ /Users/schepe2/Documents/repos ~/.config/ /Users/schepe2/Documents/ /Users/schepe2/Documents/myscripts/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
