@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 -- File explorer to pv
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, {desc="Vim File Explorer"})
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, {desc="Vim File Explorer"})
 
 
 -- navigate within insert mode

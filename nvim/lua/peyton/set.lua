@@ -18,7 +18,7 @@ vim.opt.smartindent = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = "C:\\Users\\K160722\\Documents\\vim-undo-dir"
 vim.opt.undofile = true
 
 vim.opt.wrap = false
@@ -37,33 +37,48 @@ vim.opt.updatetime = 50
 vim.g.leader = " "
 
 -- move things up and down in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- append line below to current line with a space between
 -- regardless of where your cursor is in the line
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Append next line" })
 
--- set page up / down to keep you centered on screen 
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- format code block
+vim.keymap.set("n", "<leader>=", "v%=%", { desc = "Format block" })
+
+-- set page up / down to keep you centered on screen
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move Up" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move down" })
 
 -- do the same for search, keep results in middle of screen when searching
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "n", "nzzzv", { desc = "Search forward" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Search back" })
 
 -- term splits
-vim.keymap.set("n", "<leader>h", function() vim.cmd "split" end, {desc="New horizontal split"})
-vim.keymap.set("n", "<leader>v", function() vim.cmd "vsplit" end, {desc="New vertical split"})
-vim.keymap.set("n", "<leader>c", function() vim.cmd "close" end, {desc="Close split"})
+vim.keymap.set("n", "<leader>h", function() vim.cmd "split" end, { desc = "New horizontal split" })
+vim.keymap.set("n", "<leader>v", function() vim.cmd "vsplit" end, { desc = "New vertical split" })
+vim.keymap.set("n", "<leader>c", function() vim.cmd "close" end, { desc = "Close split" })
 
--- paste over and keep in buffer
-vim.keymap.set("x", "<leader>p", "\"_dP")
+-- paste over and keep in buffer by default
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "past and keep in buffer" })
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "past and keep in buffer" })
 
 -- copy into system clipboard
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
+vim.keymap.set("n", "<leader>y", "\"+y", { desc = "copy to system clipboard" })
+vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "copy to system clipboard" })
+vim.keymap.set("v", "<leader>y", "\"+y", { desc = "copy to system clipboard" })
 
 -- replace the word your cursor is over everywhere in file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Replace word under cursor in file" })
+
+-- toggle spellcheck
+vim.keymap.set("n", "<leader>ws", function() vim.cmd "setlocal spell spelllang=en_us" end, { desc = "spellcheck on" })
+
+-- select entire line from anywhere in line
+-- lol this is just shift+v in vim
+-- vim.keymap.set("n", "<leader>wv", "^v$", { desc = "select line" })
+
+-- default colorscheme
+-- vim.cmd[[colorscheme tokyonight-night]]
