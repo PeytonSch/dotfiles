@@ -1,5 +1,7 @@
 let mapleader="\<space>"
 
+set wrap
+
 " ------------
 " Plugins
 " ------------
@@ -81,6 +83,12 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " ------------
 " Keybinds
 " ------------
+
+" fuzzier
+map <Leader>ff <action>(com.mituuz.fuzzier.Fuzzier)
+map <Leader>fm <action>(com.mituuz.fuzzier.FuzzyMover)
+map <Leader>fv <action>(com.mituuz.fuzzier.FuzzierVCS)
+map <Leader>fg <action>(com.mituuz.fuzzier.FuzzyGrep)
 
 
 nmap <C-p> <Action>(PreviousTab)
@@ -177,7 +185,7 @@ let g:WhichKeyDesc_tools_run_inspect = "<leader>Tin Run Inspection by name"
 
 
 " Files
-nmap <leader>fg <Action>(GotoFile)
+"nmap <leader>fg <Action>(GotoFile)
 nmap <leader>fr <Action>(RecentFiles)
 nmap <leader>fc <Action>(FindInPath)
 nmap <leader>fl <Action>(RecentLocations)
@@ -185,7 +193,7 @@ nmap <leader>fs <Action>(NewScratchFile)
 nmap <leader>fe :NERDTreeToggle<CR>
 nmap <leader>fo <Action>(OpenFile)
 nmap <leader>fh <Action>(LocalHistory.ShowHistory)
-nmap <leader>ff <Action>(ShowFilePath)
+"nmap <leader>ff <Action>(ShowFilePath)
 nmap <leader>fi <Action>(SelectIn)
 nmap <leader>fp <Action>(ReplaceInPath)
 let g:WhichKeyDesc_file_opt = "<leader>f File navigation"
@@ -269,6 +277,7 @@ nmap <leader>la <Action>(ShowIntentionActions)
 nmap <leader>lR <Action>(ReformatCode)
 nmap <leader>lI <Action>(InspectCode)
 nmap <leader>lG <Action>(Generate)
+nmap <leader>lt <Action>(RefactoringMenu)
 let g:WhichKeyDesc_language = "<leader>l Language"
 let g:WhichKeyDesc_language_menu = "<leader>ll Quick List"
 let g:WhichKeyDesc_language_rename = "<leader>lr Rename"
@@ -284,6 +293,7 @@ let g:WhichKeyDesc_language_show_intention_actions = "<leader>la Show Intention 
 let g:WhichKeyDesc_language_reformat_code = "<leader>lR Reformat Code"
 let g:WhichKeyDesc_language_inspect_code = "<leader>lI Inspect Code"
 let g:WhichKeyDesc_language_generate = "<leader>lG Generate"
+let g:WhichKeyDesc_language_menu = "<leader>lt Refactoring Menu"
 
 " Bookmarks
 nmap <leader>bm <Action>(Bookmarks)
@@ -331,6 +341,7 @@ nmap <leader>sc <Action>(GotoClass)
 nmap <leader>sf <Action>(GotoFile)
 nmap <leader>ss <Action>(GotoSymbol)
 nmap <leader>st <Action>(TextSearchAction)
+nmap <leader>se <Action>(Find)
 let g:WhichKeyDesc_search = "<leader>s Search"
 let g:WhichKeyDesc_search_everywhere = "<leader>sS Search Everywhere"
 let g:WhichKeyDesc_search_usages = "<leader>su Find Usages"
@@ -340,6 +351,7 @@ let g:WhichKeyDesc_search_class = "<leader>sc Search Class"
 let g:WhichKeyDesc_search_file = "<leader>sf Search File"
 let g:WhichKeyDesc_search_symbol = "<leader>ss Search Symbol"
 let g:WhichKeyDesc_search_text = "<leader>st Search Text"
+let g:WhichKeyDesc_search_text = "<leader>se Find Selected"
 
 " Version Control
 nmap <leader>Gc <Action>(Vcs.Show.Local.Changes)
@@ -372,7 +384,8 @@ let g:WhichKeyDesc_git_update_project = "<leader>Gu Update Project"
 let g:WhichKeyDesc_easymotion = "<leader><leader> EasyMotion"
 
 " History commands
-nmap <leader>hh <Action>(Vcs.ShowTabbedFileHistory)
+nmap <leader>hh <Action>(Compare.SameVersion)
+nmap <leader>hf <Action>(Vcs.ShowTabbedFileHistory)
 vmap <leader>hg <Action>(Vcs.ShowHistoryForBlock)
 nmap <leader>hd <Action>(Vcs.ShowDiff)
 nmap <leader>hl <Action>(LocalHistory.ShowHistory)
@@ -380,6 +393,8 @@ vmap <leader>hs <Action>(LocalHistory.ShowSelectionHistory)
 nmap <leader>hr <Action>(RecentChanges)
 nmap <leader>hi <Action>(LocalHistory.PutLabel)
 let g:WhichKeyDesc_History = "<leader>h git History"
+let g:WhichKeyDesc_History = "<leader>hh git diff"
+let g:WhichKeyDesc_History = "<leader>hf tabbed file history"
 let g:WhichKeyDesc_git_history = "<leader>hg git history for selection"
 let g:WhichKeyDesc_git_selection_history = "<leader>ht git selection history"
 let g:WhichKeyDesc_git_selection_history = "<leader>hd git diff"

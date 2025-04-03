@@ -20,6 +20,24 @@
 # Use nvim as nu editor 
 $env.config.buffer_editor = "nvim"
 
+source ~/Documents/dev-env/nu-tokyo-night-theme.nu
+source ~/Documents/dev-env/fd.nu
+source ~/Documents/dev-env/link.nu
+# source ~/Documents/dev-env/.oh-my-posh.nu
+
+$env.config.keybindings = [
+{
+name: fzf_change_dir
+          modifier: CONTROL
+          keycode: Char_f
+          mode: [emacs vi_normal vi_insert]
+          event: {
+send: executehostcommand,
+          cmd: "fd"
+          }
+},
+]
+
 
 
 # Fix scrolling terminal while typing in windows by setting this to false:
