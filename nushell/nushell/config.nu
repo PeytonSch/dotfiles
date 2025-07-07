@@ -20,10 +20,15 @@
 # Use nvim as nu editor 
 $env.config.buffer_editor = "nvim"
 
-source ~/Documents/dev-env/nu-tokyo-night-theme.nu
-source ~/Documents/dev-env/fd.nu
-source ~/Documents/dev-env/link.nu
-# source ~/Documents/dev-env/.oh-my-posh.nu
+
+# load my env stuff
+let s1 = $'source ($env.MY_DEV_ENV.DOTFILES)/nushell/nu-tokyo-night-theme.nu'
+let s2 = $'source ($env.MY_DEV_ENV.DOTFILES)/nushell/fd.nu'
+let s3 = $'source ($env.MY_DEV_ENV.DOTFILES)/nushell/link.nu'
+
+nu -c $s1
+nu -c $s2
+nu -c $s3
 
 $env.config.keybindings = [
 {
@@ -48,3 +53,6 @@ $env.config.shell_integration.osc133 = false
 # Starship prompt
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+# alias
+alias ij = idea64.exe
