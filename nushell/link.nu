@@ -47,10 +47,10 @@ export def "dep link" [
         }
         if $name != null {
             log info $"Adding file:($name)"
-            pnpm add file:($name)
+            pnpm add -w file:($name)
         } else {
             log info $"Adding file:($currentProj)"
-            pnpm add file:($currentProj)
+            pnpm add -w file:($currentProj)
         }
         log info "Done with add"
 
