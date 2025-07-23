@@ -20,7 +20,7 @@ vim.opt.smartindent = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- vim.opt.undodir = os.getenv("MY_DEV_ENV.DOTFILES") .. "/undodir"
 vim.opt.undofile = true
 
 vim.opt.wrap = false
@@ -46,7 +46,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- regardless of where your cursor is in the line
 vim.keymap.set("n", "J", "mzJ`z")
 
--- set page up / down to keep you centered on screen 
+-- set page up / down to keep you centered on screen
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
@@ -55,9 +55,9 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- term splits
-vim.keymap.set("n", "<leader>h", function() vim.cmd "split" end, {desc="New horizontal split"})
-vim.keymap.set("n", "<leader>v", function() vim.cmd "vsplit" end, {desc="New vertical split"})
-vim.keymap.set("n", "<leader>c", function() vim.cmd "close" end, {desc="Close split"})
+vim.keymap.set("n", "<leader>h", function() vim.cmd "split" end, { desc = "New horizontal split" })
+vim.keymap.set("n", "<leader>v", function() vim.cmd "vsplit" end, { desc = "New vertical split" })
+vim.keymap.set("n", "<leader>c", function() vim.cmd "close" end, { desc = "Close split" })
 
 -- paste over and keep in buffer
 vim.keymap.set("x", "<leader>p", "\"_dP")
@@ -68,4 +68,4 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 -- replace the word your cursor is over everywhere in file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
