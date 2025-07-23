@@ -5,6 +5,9 @@ require("peyton")
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- dissabled python3 provider, runs real slow at work
+vim.g.loaded_python3_provider = 0
+
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
