@@ -49,6 +49,8 @@ send: executehostcommand,
 # See: https://github.com/nushell/nushell/issues/5585#issuecomment-2614233472
 $env.config.shell_integration.osc133 = false
 
+# vi mode
+$env.config.edit_mode = 'vi'
 
 # Starship prompt
 mkdir ($nu.data-dir | path join "vendor/autoload")
