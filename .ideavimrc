@@ -69,7 +69,8 @@ set showmode
 " show vim commands as you type them
 set showcmd
 " case insensitive unless you use a capital letter
-set smartcase
+" set smartcase
+set ignorecase
 " incremental search
 set incsearch
 " highlight search
@@ -80,9 +81,16 @@ set visualbell
 " highlight
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
+nnoremap <leader>v <C-v>
+let g:WhichKeyDesc_blockMode = "<leader>v visual block mode"
+
 " ------------
 " Keybinds
 " ------------
+
+" remap C-d and C-u to keep things at center or screen
+nmap <C-d> <C-d>zz
+nmap <C-u> <C-u>zz
 
 " fuzzier
 map <Leader>ff <action>(com.mituuz.fuzzier.Fuzzier)
@@ -278,6 +286,8 @@ nmap <leader>lR <Action>(ReformatCode)
 nmap <leader>lI <Action>(InspectCode)
 nmap <leader>lG <Action>(Generate)
 nmap <leader>lt <Action>(RefactoringMenu)
+nmap <leader>j <Action>(EditorCloneCaretBelow)
+nmap <leader>u <Action>(EditorCloneCaretAbove)
 let g:WhichKeyDesc_language = "<leader>l Language"
 let g:WhichKeyDesc_language_menu = "<leader>ll Quick List"
 let g:WhichKeyDesc_language_rename = "<leader>lr Rename"
@@ -294,18 +304,53 @@ let g:WhichKeyDesc_language_reformat_code = "<leader>lR Reformat Code"
 let g:WhichKeyDesc_language_inspect_code = "<leader>lI Inspect Code"
 let g:WhichKeyDesc_language_generate = "<leader>lG Generate"
 let g:WhichKeyDesc_language_menu = "<leader>lt Refactoring Menu"
+let g:WhichKeyDesc_cursor_above = "<leader>u add cursor above"
+let g:WhichKeyDesc_cursor_below = "<leader>j add cursor below"
+vmap <leader>ll <Action>(Refactorings.QuickListPopupAction)
+vmap <leader>lr <Action>(RenameElement)
+vmap <leader>lc <Action>(ChangeSignature)
+vmap <leader>lv <Action>(IntroduceVariable)
+vmap <leader>li <Action>(Inline)
+vmap <leader>lf <Action>(IntroduceField)
+vmap <leader>lm <Action>(ExtractMethod)
+vmap <leader>lC <Action>(IntroduceConstant)
+vmap <leader>lp <Action>(IntroduceParameter)
+vmap <leader>lo <Action>(IntroduceParameterObject)
+vmap <leader>le <Action>(EncapsulateFields)
+vmap <leader>la <Action>(ShowIntentionActions)
+vmap <leader>lR <Action>(ReformatCode)
+vmap <leader>lI <Action>(InspectCode)
+vmap <leader>lG <Action>(Generate)
+vmap <leader>lt <Action>(RefactoringMenu)
+let g:WhichKeyDesc_language_v = "<leader>l Language"
+let g:WhichKeyDesc_language_menu_v = "<leader>ll Quick List"
+let g:WhichKeyDesc_language_rename_v = "<leader>lr Rename"
+let g:WhichKeyDesc_language_change_signature_v = "<leader>lc Change Signature"
+let g:WhichKeyDesc_language_inline_variable_v = "<leader>li Inline"
+let g:WhichKeyDesc_language_introduce_field_v = "<leader>lf Introduce Field"
+let g:WhichKeyDesc_language_extract_method_v = "<leader>lm Extract Method"
+let g:WhichKeyDesc_language_introduce_constant_v = "<leader>lC Introduce Constant"
+let g:WhichKeyDesc_language_introduce_parameter_v = "<leader>lp Introduce Parameter"
+let g:WhichKeyDesc_language_introduce_param_object_v = "<leader>lo Introduce Parameter Object"
+let g:WhichKeyDesc_language_encapsulate_v = "<leader>le Encapsulate Fields"
+let g:WhichKeyDesc_language_show_intention_actions_v = "<leader>la Show Intention Actions"
+let g:WhichKeyDesc_language_reformat_code_v = "<leader>lR Reformat Code"
+let g:WhichKeyDesc_language_inspect_code_v = "<leader>lI Inspect Code"
+let g:WhichKeyDesc_language_generate_v = "<leader>lG Generate"
+let g:WhichKeyDesc_language_menu_v = "<leader>lt Refactoring Menu"
 
 " Bookmarks
 nmap <leader>bm <Action>(Bookmarks)
 nmap <leader>bs <Action>(ShowBookmarks)
+nmap <C-t> <Action>(ShowBookmarks)
 nmap <leader>bt <Action>(ActivateBookmarksToolWindow)
 nmap <leader>bb <Action>(ToggleBookmark)
 nmap <leader>be <Action>(EditBookmark)
 nmap <leader>bp <Action>(GotoPreviousBookmark)
 nmap <leader>bn <Action>(GotoNextBookmark)
 nmap <leader>bf <Action>(ToggleBookmarkWithMnemonic)
-nmap <leader>bg <Action>(ShowTypeBookmarks)
 nmap <leader>br <Action>(EditBookmark)
+nmap <leader>i <Action>(ShowTypeBookmarks)
 let g:WhichKeyDesc_bookmarks = "<leader>b Bookmarks"
 let g:WhichKeyDesc_bookmarks_menu = "<leader>bm Bookmark Menu"
 let g:WhichKeyDesc_bookmarks_show = "<leader>bs Show Bookmarks"
@@ -317,6 +362,7 @@ let g:WhichKeyDesc_bookmarks_next = "<leader>bn Next Bookmark"
 let g:WhichKeyDesc_bookmarks_mnemonic = "<leader>bf Bookmark Create Mnemonic"
 let g:WhichKeyDesc_bookmarks_mnemonic_show = "<leader>bf Bookmark Show Mnemonic"
 let g:WhichKeyDesc_bookmarks_rename = "<leader>br Rename Bookmark"
+let g:WhichKeyDesc_bookmarks_rename = "<leader>i Type Bookmarks"
 
 " Code Navigation
 nmap <leader>gd <Action>(GotoDeclaration)
@@ -325,12 +371,17 @@ nmap <leader>go <Action>(GotoSuperMethod)
 nmap <leader>gD <Action>(GotoTypeDeclaration)
 nmap <leader>gi <Action>(GotoImplementation)
 nmap <leader>gT <Action>(GotoTest)
+nmap <leader>k <Action>(AceWordStartAction)
+nmap <leader>e <Action>(FileStructurePopup)
 let g:WhichKeyDesc_goto = "<leader>g Go To"
 let g:WhichKeyDesc_goto_declaration = "<leader>gd Go To Declaration"
 let g:WhichKeyDesc_goto_super_method = "<leader>go Go To Super Method"
 let g:WhichKeyDesc_goto_type_declaration = "<leader>gD Go To Type Declaration"
 let g:WhichKeyDesc_goto_implementation = "<leader>gi Go To Implementation"
 let g:WhichKeyDesc_goto_test = "<leader>gT Go To Test"
+let g:WhichKeyDesc_ace_jump = "<leader>k Jump"
+let g:WhichKeyDesc_file_structure = "<leader>e file structure"
+
 
 " Search
 nmap <leader>sS <action>(SearchEverywhere)
