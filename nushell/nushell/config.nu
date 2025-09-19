@@ -41,6 +41,43 @@ send: executehostcommand,
           cmd: "fd"
           }
 },
+{
+name: fzf_webstorm_cgs
+          modifier: CONTROL
+          keycode: Char_y
+          mode: [emacs vi_normal vi_insert]
+          event: {
+send: executehostcommand,
+          cmd: "opencgs"
+          }
+},
+name: fzf_webstorm_map
+          modifier: CONTROL
+          keycode: Char_u
+          mode: [emacs vi_normal vi_insert]
+          event: {
+send: executehostcommand,
+          cmd: "openmap"
+          }
+},
+name: fzf_webstorm_common
+          modifier: CONTROL
+          keycode: Char_i
+          mode: [emacs vi_normal vi_insert]
+          event: {
+send: executehostcommand,
+          cmd: "opencommon"
+          }
+},
+name: fzf_webstorm_core
+          modifier: CONTROL
+          keycode: Char_o
+          mode: [emacs vi_normal vi_insert]
+          event: {
+send: executehostcommand,
+          cmd: "opencore"
+          }
+},
 ]
 
 
@@ -58,3 +95,4 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
 
 # alias
 alias ij = idea64.exe
+alias ws = webstorm
