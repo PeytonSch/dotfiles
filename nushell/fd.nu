@@ -12,6 +12,18 @@ export def --env opencgs [] {
     webstorm $selectedString
 }
 
+# --env lets us change the pwd env variable outside of the lifetime of this function
+export def --env opencgsmods [] {
+    let selectedString = ls ...(glob C:/Users/K160722/Documents/repos/cgsweb/node_modules/@cgsweb/core/lib/components/**/*) | get name | to text | fzf
+    webstorm $selectedString
+}
+
+# --env lets us change the pwd env variable outside of the lifetime of this function
+export def --env openvideomods [] {
+    let selectedString = ls ...(glob C:/Users/K160722/Documents/repos/video/node_modules/@cgsweb/core/lib/components/**/*) | get name | to text | fzf
+    webstorm $selectedString
+}
+
 
 # --env lets us change the pwd env variable outside of the lifetime of this function
 export def --env openmap [] {
