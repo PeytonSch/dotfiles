@@ -32,7 +32,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-tokyo-night)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -154,6 +154,42 @@
 (map! :v (kbd "C-/") #'comment-dwim)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; C-1 functionality to find current file and open/close tree view ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun +treemacs-toggle-reveal-focus ()
+  "Toggle Treemacs; when opening, reveal current file and focus Treemacs.
+If current buffer is not visiting a file, just open Treemacs at the project root."
+  (interactive)
+  (require 'treemacs)
+  (if (eq (treemacs-current-visibility) 'visible)
+      (treemacs)  ; hide
+    (progn
+      (condition-case _err
+          (if buffer-file-name
+              (treemacs-find-file)
+            (treemacs))
+        (error (treemacs)))
+      (treemacs-select-window))))
+
+(map! :n "C-1" #'+treemacs-toggle-reveal-and-focus)
+
+
+(after! treemacs
+  ;; Works regardless of Evil
+  (map! :map treemacs-mode-map
+        :g "C-1" #'+treemacs-toggle-reveal-focus
+        :n "C-1" #'+treemacs-toggle-reveal-focus)
+
+  ;; If you have evil-treemacs integration, bind there too
+  (when (boundp 'evil-treemacs-state-map)
+    (map! :map evil-treemacs-state-map
+          :g "C-1" #'+treemacs-toggle-reveal-focus
+          :n "C-1" #'+treemacs-toggle-reveal-focus)))
+
+
+
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
@@ -162,3 +198,13 @@
   :after corfu
   :custom (kind-icon-default-face 'corfu-default)
   :config (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+
+;; Fonts
+;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 14 :weight 'semi-bold)
+;;      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Propo" :size 15)
+;;       doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 24))
+
+(setq doom-font (font-spec :family "Hack Nerd Font Mono" :size 16 :weight 'regular)
+     doom-variable-pitch-font (font-spec :family "Hack Nerd Font Propo" :size 18)
+      doom-big-font (font-spec :family "Hack Nerd Font Mono" :size 26))
