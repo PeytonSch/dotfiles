@@ -91,3 +91,74 @@
          ("\\.tsx\\'" . tsx-ts-mode))
   :config
   (add-hook! '(typescript-ts-mode-hook tsx-ts-mode-hook) #'lsp!))
+
+
+;; Change which-key popup delay
+(setq which-key-idle-delay 0.1)
+
+
+;; hjkl navigation in org-read-date prompt (Doom/Evil)
+(with-eval-after-load 'org
+  (let ((m org-read-date-minibuffer-local-map))
+    ;; days/weeks (same as Shift-arrows)
+    (define-key m (kbd "h") (kbd "S-<left>"))
+    (define-key m (kbd "l") (kbd "S-<right>"))
+    (define-key m (kbd "j") (kbd "S-<down>"))
+    (define-key m (kbd "k") (kbd "S-<up>"))
+    ;; months/years (same as M-Shift-arrows)
+    (define-key m (kbd "H") (kbd "M-S-<left>"))
+    (define-key m (kbd "L") (kbd "M-S-<right>"))
+    (define-key m (kbd "J") (kbd "M-S-<down>"))
+    (define-key m (kbd "K") (kbd "M-S-<up>"))))
+
+
+
+;; force consult-locate to use es.exe explicitly (windows alternative)
+(after! consult
+  (setq consult-locate-args "es.exe -i -p -r")  ;; case-insensitive, full paths
+)
+
+
+;; Use consult jump list
+(map! :leader
+      :desc "Jump list (Consult + Evil)"
+      "s j" #'evil-collection-consult-jump-list)
+
+(map! :leader
+      :desc "Code / File Outline"
+      "s o" #'consult-outline)
+
+
+(map! :leader
+      :desc "next error"
+      "g e" #'flycheck-next-error)
+
+(map! :leader
+      :desc "Consult flycheck"
+      "s e" #'consult-flycheck)
+
+(map! :n (kbd "C-e") #'consult-recent-file)
+
+(map! :n (kbd "M-RET") #'lsp-execute-code-action)
+
+(after! evil
+  ;; Remove old bindings first (works even if they exist elsewhere in normal state)
+  (map! :n "C-j" nil
+        :n "C-k" nil)
+
+  ;; Bind your commands (literal keys, no [remap …])
+  (map! :n "C-j" #'goto-last-change
+        :n "C-k" #'goto-last-change-reverse))
+
+(map! :n (kbd "C-/") #'comment-dwim)
+(map! :v (kbd "C-/") #'comment-dwim)
+
+
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode)
+
+
+(use-package! kind-icon
+  :after corfu
+  :custom (kind-icon-default-face 'corfu-default)
+  :config (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
