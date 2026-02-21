@@ -22,7 +22,9 @@
 
        :completion
        ;;company           ; the ultimate code completion backend
-       (corfu +orderless)  ; complete with cap(f), cape and a flying feather!
+       ;;
+       ;; disabled for lsp-bridge
+       ;;(corfu +orderless)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
@@ -81,18 +83,21 @@
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       ;;vterm             ; the best terminal emulation in Emacs
+       vterm             ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       (spell +flyspell) ; tasing you for misspelling mispelling
+       spell
+       ;;(spell +flyspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       ;;
+       ;; disabled for lsp-bridge
+       ;;(debugger +lsp)          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;;docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
@@ -100,7 +105,9 @@
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
        ;;llm               ; when I said you needed friends, I didn't mean...
-       lsp ; +eglot)      ; M-x vscode
+       ;;
+       ;; disabled lsp in favor of multi-threaded lsp-bridge
+       ;; lsp ; +eglot)      ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -145,8 +152,14 @@
        ;;idris             ; a language you can depend on
        json              ; At least it ain't XML
        ;;janet             ; Fun fact: Janet is me!
-       (java +lsp)       ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       ;;
+       ;; +lsp flag disabled for lsp-bridge
+       java       ; the poster child for carpal tunnel syndrome
+       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       typescript        ; all(hope(abandon(ye(who(enter(here))))))
+       ;; (java +lsp)       ; the poster child for carpal tunnel syndrome
+       ;; (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       ;; (typescript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun

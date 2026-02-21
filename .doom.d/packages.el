@@ -56,3 +56,23 @@
 
 ;; Icons for autocomplete
 (package! kind-icon)
+
+
+(package! dap-mode)
+(package! posframe)  ;; needed for dap-ui
+
+(package! org-ql) ;; dynamic queries in docs
+
+;; multi threaded lsp
+(when (package! lsp-bridge
+        :recipe (:host github
+                 :repo "manateelazycat/lsp-bridge"
+                 :branch "master"
+                 :files ("*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")
+                 ;; do not perform byte compilation or native compilation for lsp-bridge
+                 :build (:not compile)))
+  (package! markdown-mode)
+  (package! yasnippet))
+
+;; garbage collection package
+(package! gcmh)
