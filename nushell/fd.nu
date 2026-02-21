@@ -43,3 +43,10 @@ export def --env opencore [] {
     let selectedString = ls ...(glob C:/Users/K160722/Documents/repos/common-ts/packages/core/**/*) | get name | to text | fzf
     webstorm $selectedString
 }
+
+# --env lets us change the pwd env variable outside of the lifetime of this function
+# wses = web storm everything (es.exe)
+export def --env wses [] {
+    let selectedString = es.exe
+    webstorm $selectedString
+}
