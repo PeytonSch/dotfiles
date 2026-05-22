@@ -152,6 +152,10 @@
       :desc "Consult flycheck"
       "s e" #'lsp-bridge-diagnostic-list)
 
+(map! :n (kbd "gD") #'lsp-bridge-find-references)
+
+(map! :i (kbd "C-h") #'lsp-bridge-signature-help-fetch)
+
 (map! :n (kbd "C-e") #'consult-recent-file)
 
 ;; (map! :n (kbd "M-RET") #'lsp-execute-code-action)
@@ -371,4 +375,13 @@ If a region is active, operate on that region; otherwise operate on the current 
       '((sequence "TODO(t!)" "STRT(s!)" "PAUSE(p!)" "HOLD(h!)" "|" "DONE(d!)")))
 
 
+;; start full screen
 (add-to-list 'default-frame-alist '(fullscreen . fullboth))
+
+;; start zen mode in org or programming files
+(add-hook 'prog-mode-hook #'writeroom-mode)
+(add-hook 'text-mode-hook #'writeroom-mode)
+
+
+(after! vertico (require 'embark-consult nil t))
+(after! embark (setf (alist-get 'consult-location embark-exporters-alist)#'embark-consult-export-grep))
