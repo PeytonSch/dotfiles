@@ -92,6 +92,23 @@ let g:WhichKeyDesc_blockMode = "<leader>v visual block mode"
 nmap <C-d> <C-d>zz
 nmap <C-u> <C-u>zz
 
+" Move selected lines down/up and keep selection
+xnoremap J :m '>+1<CR>gv=gv
+xnoremap K :m '<-2<CR>gv=gv
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" jk normal mode
+inoremap jk <Esc>
+
+" regular keyboard brackets insert mode
+inoremap jj ()<Left>
+inoremap kk {}<Left>
+inoremap LL[]<Left>
+inoremap LK LL
+inoremap ii =<Right>
+
 " fuzzier
 map <Leader>ff <action>(com.mituuz.fuzzier.Fuzzier)
 map <Leader>fm <action>(com.mituuz.fuzzier.FuzzyMover)
@@ -107,6 +124,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
+
+nmap s <Action>(AceAction)
 
 " Window Commands
 nmap <leader>wv <Action>(SplitVertically)
@@ -369,6 +388,7 @@ nmap <leader>gd <Action>(GotoDeclaration)
 nmap <leader>ge <Action>(GotoNextError)
 nmap <leader>go <Action>(GotoSuperMethod)
 nmap <leader>gD <Action>(GotoTypeDeclaration)
+nmap <leader>gy <Action>(GotoTypeDeclaration)
 nmap <leader>gi <Action>(GotoImplementation)
 nmap <leader>gT <Action>(GotoTest)
 nmap <leader>k <Action>(AceWordStartAction)
@@ -388,6 +408,7 @@ nmap <leader>sS <action>(SearchEverywhere)
 nmap <leader>su <Action>(FindUsages)
 nmap <leader>sn <Action>(ShowNavBar)
 nmap <leader>sa <Action>(GotoAction)
+nmap <A-x> <Action>(GotoAction)
 nmap <leader>sc <Action>(GotoClass)
 nmap <leader>sf <Action>(GotoFile)
 nmap <leader>ss <Action>(GotoSymbol)
@@ -455,8 +476,11 @@ let g:WhichKeyDesc_selection_history = "<leader>hs local selection history"
 let g:WhichKeyDesc_recent_changes = "<leader>hr recent changes"
 let g:WhichKeyDesc_project_history = "<leader>hi label local history"
 
-nmap K <Action>(ShowErrorDescription)
-let g:WhichKeyDesc_ShowErrorDescription = "K ShowErrorDescription"
+nmap <leader>k <Action>(QuickJavaDoc)
+" nmap K <Action>(ShowErrorDescription)
+" let g:WhichKeyDesc_ShowErrorDescription = "K ShowErrorDescription"
+nmap K <Action>(ShowHoverInfo)
+let g:WhichKeyDesc_ShowErrorDescription = "K ShowHoverInfo"
 
 
 

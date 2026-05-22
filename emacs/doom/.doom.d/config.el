@@ -351,3 +351,24 @@ If a region is active, operate on that region; otherwise operate on the current 
 (setq imenu-flatten 'prefix)     ;; alternatives: 'annotation or 'group
 ;; Optional: make the prefix formatting nicer
 (setq imenu-level-separator " › ")
+
+
+(use-package org-ql
+  :after org
+  :init
+  ;; Ensure dynamic block writer is available:
+  (require 'org-ql-search))
+
+
+;; jk -> ESC (leave insert mode)
+(after! evil-escape
+  (setq evil-escape-key-sequence "jk"
+        evil-escape-delay 0.20))  ; tweak to taste (0.15–0.30 is common)
+
+;; auto log done time when closing task
+(setq org-log-done 'time)
+(setq org-todo-keywords
+      '((sequence "TODO(t!)" "STRT(s!)" "PAUSE(p!)" "HOLD(h!)" "|" "DONE(d!)")))
+
+
+(add-to-list 'default-frame-alist '(fullscreen . fullboth))
