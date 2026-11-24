@@ -213,8 +213,20 @@ If peek UI is active, close it; otherwise open peek."
   (setq lsp-bridge-multi-lang-server-extension-list
         (assoc-delete-all '("ts" "mts") lsp-bridge-multi-lang-server-extension-list)))
 
-;; PERF: only probe for Git when opening files (each probe is slow on Windows)
-(setq vc-handled-backends '(Git))
+;; PERF: don't run vc on file open. `vc-refresh-state' runs several synchronous
+;; git processes per file, which cost ~0.6s on Windows. This drops the branch
+;; from the modeline and the diff-hl gutter; magit is unaffected. To get them
+;; back, use '(Git) instead of nil.
+(setq vc-handled-backends nil)
+
+;; PERF: Git for Windows' cmd\git.exe is a launcher that spawns the real
+;; git.exe; call the real one directly (~30% faster per git process).
+(when (featurep :system 'windows)
+  (when-let* ((git (seq-find #'file-executable-p
+                             '("C:/Program Files/Git/ucrt64/bin/git.exe"
+                               "C:/Program Files/Git/mingw64/bin/git.exe"))))
+    (setq vc-git-program git
+          magit-git-executable git)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
