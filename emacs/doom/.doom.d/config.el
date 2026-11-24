@@ -200,6 +200,15 @@ If peek UI is active, close it; otherwise open peek."
   (define-key lsp-bridge-peek-keymap (kbd "M-P") #'lsp-bridge-peek-file-content-prev-line)
 )
 
+;; remove LSP delays -- from bash's dotfiles, not sure if these will work with lsp bridge or not...
+(after! flycheck (setq flycheck-idle-change-delay 0.1))
+;; Prety sure these only apply to lsp-mode and not lsp-bridge so these probably do nothing right now
+(after! lsp-mode
+  (setq lsp-idle-delay 0.1)
+  :custom
+  (setq lsp-completion-enable-additional-text-edit t)
+  (setq lsp-modeline-code-actions-enable t)
+  )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -379,8 +388,9 @@ If a region is active, operate on that region; otherwise operate on the current 
 (add-to-list 'default-frame-alist '(fullscreen . fullboth))
 
 ;; start zen mode in org or programming files
-(add-hook 'prog-mode-hook #'writeroom-mode)
-(add-hook 'text-mode-hook #'writeroom-mode)
+;; This seems to be rather slow so turning off for now
+;;(add-hook 'prog-mode-hook #'writeroom-mode)
+;;(add-hook 'text-mode-hook #'writeroom-mode)
 
 
 (after! vertico (require 'embark-consult nil t))
