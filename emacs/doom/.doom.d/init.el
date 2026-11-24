@@ -155,8 +155,7 @@
        ;;
        ;; +lsp flag disabled for lsp-bridge
        java       ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
-       typescript        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +tree-sitter) ; JS + TS (typescript-ts-mode); there is no separate typescript module
        ;; (java +lsp)       ; the poster child for carpal tunnel syndrome
        ;; (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;; (typescript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))

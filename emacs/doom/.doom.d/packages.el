@@ -74,5 +74,3 @@
   (package! markdown-mode)
   (package! yasnippet))
 
-;; garbage collection package
-(package! gcmh)

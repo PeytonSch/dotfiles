@@ -200,15 +200,21 @@ If peek UI is active, close it; otherwise open peek."
   (define-key lsp-bridge-peek-keymap (kbd "M-P") #'lsp-bridge-peek-file-content-prev-line)
 )
 
-;; remove LSP delays -- from bash's dotfiles, not sure if these will work with lsp bridge or not...
-(after! flycheck (setq flycheck-idle-change-delay 0.1))
-;; Prety sure these only apply to lsp-mode and not lsp-bridge so these probably do nothing right now
-(after! lsp-mode
-  (setq lsp-idle-delay 0.1)
-  :custom
-  (setq lsp-completion-enable-additional-text-edit t)
-  (setq lsp-modeline-code-actions-enable t)
-  )
+;; PERF: lsp-bridge already provides TypeScript + eslint diagnostics, so keep
+;; flycheck out of JS/TS buffers. Older flycheck also runs a blocking
+;; `eslint --print-config' on the first check of each buffer, which freezes Emacs.
+(after! flycheck
+  (setq flycheck-global-modes
+        '(not typescript-mode typescript-ts-mode tsx-ts-mode js-mode js-ts-mode)))
+
+;; PERF: only start tsserver for .ts files, not tsserver + the eslint language
+;; server. Delete this block to get eslint diagnostics from lsp-bridge back.
+(after! lsp-bridge
+  (setq lsp-bridge-multi-lang-server-extension-list
+        (assoc-delete-all '("ts" "mts") lsp-bridge-multi-lang-server-extension-list)))
+
+;; PERF: only probe for Git when opening files (each probe is slow on Windows)
+(setq vc-handled-backends '(Git))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -351,13 +357,6 @@ If a region is active, operate on that region; otherwise operate on the current 
 ;;          ))))
 
 
-;; garbage collection package
-(use-package! gcmh
-  :init
-  ;; Aggressive settings (tune if memory pressure / big repos cause spikes)
-  (setq gcmh-high-cons-threshold (* 512 1024 1024) ; 512MB
-        gcmh-idle-delay 2.0)
-  (gcmh-mode 1))
 
 
 ;; Show all symbols in one flat list instead of nested menus
